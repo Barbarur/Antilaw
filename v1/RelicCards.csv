@@ -1,0 +1,23 @@
+Flame,Number,Icon
+Red,1,Key
+Red,2,Skull
+Red,3,Ring
+Red,4,Feather
+Green,1,Feather
+Green,2,Key
+Green,3,Skull
+Green,4,Ring
+Blue,1,Skull
+Blue,2,Ring
+Blue,3,Feather
+Blue,4,Key
+Purple,1,Ring
+Purple,2,Feather
+Purple,3,Key
+Purple,4,Skull
+Solar,1 3,Sun
+Solar,2 4,Sun
+Depleted,1,Key
+Depleted,2,Ring
+Depleted,3,Feather
+Depleted,4,Skull

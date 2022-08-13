@@ -1,0 +1,341 @@
+
+<HomeScreen>:
+    BoxLayout:
+        #size_hint: .9, .95
+        pos_hint: {'center_x': .5, 'center_y': .5}
+        orientation: 'vertical'
+        MenuLabel:
+            size_hint: 1, .3
+            text: 'ANTILAW'
+        GridLayout:
+            cols: 2
+            padding: 75, 20, 75, 50
+            spacing: 20
+            MenuButton:
+                text: 'How to Play'
+                on_release: app.root.current= 'HowTo'
+            MenuButton:
+                text: 'Solo'
+                on_release:
+                    root.solo_game()
+            MenuButton:
+                text: 'Statistics'
+                on_release: app.root.current= 'Statistics'
+            MenuButton:
+                text: 'Versus AI'
+                on_release:
+                    root.game_mode= 'GameAI'
+                    app.root.current= 'AILevel'
+            MenuButton:
+                text: 'Settings'
+                on_release: app.root.current= 'Settings'
+            MenuButton:
+                text: 'Online'
+                #disabled: True
+                on_release: root.test()
+
+
+<HowToPlayScreen>:
+    BoxLayout:
+        BoxLayout:
+            size_hint: .5, 1
+            orientation: 'vertical'
+            MenuLabel:
+                text: 'Statistics'
+            Button:
+                text: 'Solo'
+            Button:
+                text: 'Competitive'
+            MenuButton:
+                text: 'Back'
+                on_release: root.test()
+        Label:
+            text_size: self.size
+            text: 'adasdddddddddddddddddddddddddddddddddddddddddddddddadasdddddddddddddddddddddddddddddddddddddddddddddddadasdddddddddddddddddddddddddddddddddddddddddddddddadasdddddddddddddddddddddddddddddddddddddddddddddddadasdddddddddddddddddddddddddddddddddddddddddddddddadasdddddddddddddddddddddddddddddddddddddddddddddddadasdddddddddddddddddddddddddddddddddddddddddddddddadasdddddddddddddddddddddddddddddddddddddddddddddddadasdddddddddddddddddddddddddddddddddddddddddddddddadasddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd'
+
+<Statistics>:
+    BoxLayout:
+        BoxLayout:
+            orientation: 'vertical'
+            MenuLabel:
+                text: 'Statistics'
+            MenuToggleButton:
+                text: 'Solo'
+            MenuToggleButton:
+                text: 'Versus AI'
+            MenuToggleButton:
+                text: 'Online'
+            MenuButton:
+                text: 'Back'
+                on_release: app.root.current= 'Home'
+        Label:
+            text: 'Here the statistics'
+
+<Settings>:
+
+<ContinueNewSoloGameScreen>:
+    AnchorLayout:
+        canvas.before:
+            Color:
+                rgba: 1, 1, 1, 1
+            RoundedRectangle:
+                size: self.width * .6, self.height * .6
+                pos: self.width * .2, self.height * .2
+        BoxLayout:
+            size_hint: .6, .6
+            #size: self.width * .6, self.height * .6
+            pos: self.width * .2, self.height * .2
+            orientation: 'vertical'
+            padding: 30, 0, 30, 30
+            spacing: 40
+            Label:
+                text: 'Do you want to resume your paused game,\nor start a new one?'
+                color: .1, .1, .1, 1
+                halign: 'center'
+                valign: 'bottom'
+                font_size: self.height * .275
+            BoxLayout:
+                orientation: 'horizontal'
+                #padding: 15, 0, 15, 15
+                spacing: 40
+                Button:
+                    text: 'Continue'
+                    on_release: root.continue_solo_game()
+                Button:
+                    text: 'New Game'
+                    on_release: root.new_solo_game()
+
+            Button:
+                text: 'Cancel'
+                on_release: app.root.current= 'Home'
+
+
+<SoloLevelScreen>:
+    BoxLayout:
+        #size_hint: .9, .95
+        pos_hint: {'center_x': .5, 'center_y': .5}
+        orientation: 'vertical'
+        MenuLabel:
+            size_hint: 1, .3
+            text: 'Solo Game'
+        BoxLayout:
+            orientation: 'vertical'
+            padding: 75, 20, 75, 50
+            spacing: 20
+            BoxLayout:
+                spacing: 20
+                MenuToggleButton:
+                    group: 'level'
+                    text: 'Easy'
+                    on_press: root.difficulty_level(self)
+                MenuToggleButton:
+                    group: 'level'
+                    text: 'Standard'
+                    state: 'down'
+                    on_press: root.difficulty_level(self)
+                MenuToggleButton:
+                    group: 'level'
+                    text: 'Hard'
+                    on_press: root.difficulty_level(self)
+            MenuToggleButton:
+                size_hint: .6, 1
+                pos_hint: {'center_x': .5}
+                text: 'Reliquary'
+                on_press: root.reliquary_level(self)
+            BoxLayout:
+                spacing: 20
+                MenuButton:
+                    text: 'Back'
+                    on_press: app.root.current= 'Home'
+                MenuButton:
+                    text: 'Accept'
+                    on_press: app.root.current= 'Loading'
+
+
+<AILevelScreen>:
+    BoxLayout:
+        size_hint: .9, .95
+        pos_hint: {'center_x': .5, 'center_y': .5}
+        orientation: 'vertical'
+        MenuLabel:
+            size_hint: 1, .3
+            text: 'AI Game'
+        BoxLayout:
+            orientation: 'vertical'
+            padding: 0, 20, 0, 0
+            spacing: 20
+            BoxLayout:
+                spacing: 20
+                MenuToggleButton:
+                    group: 'level'
+                    text: 'Easy'
+                    on_release: root.difficulty_level(self)
+                MenuToggleButton:
+                    group: 'level'
+                    text: 'Standard'
+                    state: 'down'
+                    on_release: root.difficulty_level(self)
+                MenuToggleButton:
+                    group: 'level'
+                    text: 'Hard'
+                    on_release: root.difficulty_level(self)
+            BoxLayout:
+                spacing: 20
+                Label:
+                    text: 'Did you have a Dejavu today?'
+                MenuToggleButton:
+                    group: 'PosPlayer'
+                    text: 'Yes'
+                    state: 'down'
+                    on_release: root.position_player(self)
+                MenuToggleButton:
+                    group: 'PosPlayer'
+                    text: 'No'
+                    on_release: root.position_player(self)
+            BoxLayout:
+                spacing: 20
+                MenuButton:
+                    text: 'Back'
+                    on_release: app.root.current= 'Menu'
+                MenuButton:
+                    text: 'Accept'
+                    on_release: app.root.current= 'Loading'
+            BoxLayout:
+                size_hint: 1, .1
+
+
+<LoadingScreen>:
+    BoxLayout:
+        MenuLabel:
+            text: 'Loading...'
+            #on_release: root.go_to_game()
+
+<GameMenuScreen>:
+    BoxLayout:
+        pos_hint: {'center_x': .5, 'center_y': .5}
+        orientation: 'vertical'
+        MenuLabel:
+            size_hint: 1, .3
+            text: 'Options'
+        GridLayout:
+            cols: 2
+            padding: 75, 20, 75, 50
+            spacing: 20
+            MenuLabel
+            MenuButton:
+                text: 'Continue'
+                on_release: root.go_back()
+            MenuLabel
+            MenuButton:
+                text: 'Restart'
+                on_release: root.restart()
+            MenuButton:
+                text: 'Quit'
+                on_release: root.go_home()
+            MenuButton:
+                text: 'How to play'
+                on_release: app.root.current= 'HowTo'
+
+
+
+<GameSoloScreen>:
+    sorcerer: sorcerer
+    codex: codex
+    skipping_button: skipping_button
+    undo_button: undo_button
+    canvas.before:
+        Color:
+            rgba: 1, 1, 0, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    RelativeLayout:
+        Sorcerer:
+            id: sorcerer
+        Codex:
+            id: codex
+            pos: root.width_gap , root.height_gap
+            size: 150, 100
+
+        BoxLayout:
+            pos: (root.width_gap, root.card_size[1] * 2 + root.height_gap * 3)
+            size_hint: None, None
+            size: root.card_size
+            orientation: 'vertical'
+            Label:
+                text: 'Counter'
+                font_size: self.height * .8
+                color: 1, 0, 0, 1
+                size_hint: 1, .2
+            Label:
+                text: str(root.counter)
+                font_size: self.height * 0.8
+                color: 1, 0, 0, 1
+        BoxLayout:
+            pos: (root.width_gap * 8 + root.card_size[0] * 7, root.card_size[1] * 2 + root.height_gap * 3)
+            size_hint: None, None
+            size: root.card_size
+            orientation: 'vertical'
+            Label:
+                text: 'Crystals'
+                font_size: self.height * .8
+                color: 1, 0, 0, 1
+                size_hint: 1, .2
+            Label:
+                text: str(root.crystals)
+                font_size: self.height * 0.8
+                color: 1, 0, 0, 1
+        Button:
+            pos: (root.width_gap * 9 + root.card_size[0] * 8, root.card_size[1] * 2 + root.height_gap * 3)
+            size_hint: None, None
+            size: root.card_size
+            text: 'Menu'
+            on_release: app.root.current= 'GameMenu'
+        Button:
+            id: undo_button
+            text: "Undo"
+            pos: ((root.width - self.width - root.width_gap), (70 + root.height_gap * 2))
+            size_hint: None, None
+            size: 150, 70
+            on_release: root.undo_movement()
+        Skipping:
+            id: skipping_button
+            size: 150, 70
+            pos: ((root.width - self.width - root.width_gap), root.height_gap)
+
+
+
+<GameAIScreen>:
+    player_sorcerer: player_sorcerer
+    ai_sorcerer: ai_sorcerer
+    codex: codex
+    canvas.before:
+        Color:
+            rgba: .5, 0, .5, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    RelativeLayout:
+        Sorcerer:
+            id: player_sorcerer
+        Sorcerer:
+            id: ai_sorcerer
+        Codex:
+            id: codex
+            pos: root.width_gap , root.height_gap
+            size: 150, 100
+        BoxLayout:
+            pos: (root.width_gap * 9 + root.card_size[0] * 8, root.card_size[1] * 2 + root.height_gap * 3)
+            size_hint: None, None
+            size: root.card_size
+            orientation: 'vertical'
+            Label:
+                text: 'Crystals'
+                font_size: self.height * .8
+                color: 1, 0, 0, 1
+                size_hint: 1, .2
+            Label:
+                text: str(root.player_crystals)
+                font_size: self.height * 0.8
+                color: 1, 0, 0, 1
+
