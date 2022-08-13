@@ -1,0 +1,90 @@
+#:import utils kivy.utils
+
+<AntiCard>:
+    size_hint: None, None
+    canvas.before:
+        # Shadow of the card
+        Color:
+            rgba: self.frame_color
+        RoundedRectangle:
+            pos: self.x + self.width / 16, self.y - self.width / 12
+            size: self.size
+            radius: [self.frame]
+        # Card Colored frame
+        Color:
+            rgba: utils.get_color_from_hex(self.card_color)
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [self.frame]
+        # Card inner design
+        Color:
+            rgba: utils.get_color_from_hex('#EAD1A1')
+        RoundedRectangle:
+            pos: self.x + self.frame / 2, self.y + self.frame / 2
+            size: self.width - self.frame, self.height - self.frame
+            radius: [self.frame / 2]
+    orientation: 'vertical'
+    Label:
+        text: root.label
+        font_name: 'fonts/BlackCastleMF.ttf'
+        font_size: self.height* 0.5
+        color: .1, .1, .1, 1
+        disabled_color: .1, .1, .1, 1
+    AnchorLayout:
+        anchor_x: 'center'
+        anchor_y: 'top'
+        Image:
+            size_hint: .6, .7
+            source: root.image
+            allow_stretch: True
+
+
+<Sorcerer>:
+    canvas.before:
+        Color:
+            rgba: 0, 0, 0, 1
+        Line:
+            points: self.points
+            width: 2
+
+<Skipping>:
+    text: 'Skip Turn'
+
+
+<Codex>:
+    size_hint: None, None
+    size: self.size
+    pos: self.pos
+    canvas.after:
+        Color:
+            rgba: 0, 0, 0, 1
+        Line:
+            circle: self.point[0] + self.pos[0], self.point[1] + self.pos[1], min(self.width/5, self.height/5)
+            width: 2
+    GridLayout:
+        cols: 2
+        RelativeLayout:
+            canvas.before:
+                Color:
+                    rgba: utils.get_color_from_hex('#5DBAE8')
+                Rectangle:
+                    size: self.size
+        RelativeLayout:
+            canvas.before:
+                Color:
+                    rgba: utils.get_color_from_hex('#BEF0A2')
+                Rectangle:
+                    size: self.size
+        RelativeLayout:
+            canvas.before:
+                Color:
+                    rgba: utils.get_color_from_hex('#FB98AE')
+                Rectangle:
+                    size: self.size
+        RelativeLayout:
+            canvas.before:
+                Color:
+                    rgba: utils.get_color_from_hex('#7851A7')
+                Rectangle:
+                    size: self.size
